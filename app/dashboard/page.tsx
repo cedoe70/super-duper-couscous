@@ -3,13 +3,21 @@
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
+  LineChart as ReLineChart,
+  Line as ReLine,
+  XAxis as ReXAxis,
+  YAxis as ReYAxis,
+  Tooltip as ReTooltip,
+  ResponsiveContainer as ReResponsiveContainer,
 } from "recharts";
+
+// Cast all problematic Recharts components to `any` to skip JSX type errors
+const LineChart = ReLineChart as any;
+const Line = ReLine as any;
+const XAxis = ReXAxis as any;
+const YAxis = ReYAxis as any;
+const Tooltip = ReTooltip as any;
+const ResponsiveContainer = ReResponsiveContainer as any;
 
 export default function DashboardPage() {
   const [data] = useState([
@@ -32,24 +40,19 @@ export default function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="h-64">
-            {/** Temporary type fix for Vercel build */}
-            {(ResponsiveContainer as unknown as React.FC<any>)({
-              width: "100%",
-              height: "100%",
-              children: (
-                <LineChart data={data}>
-                  <XAxis dataKey="name" stroke="#888" />
-                  <YAxis stroke="#888" />
-                  <Tooltip />
-                  <Line
-                    type="monotone"
-                    dataKey="value"
-                    stroke="#82ca9d"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-              ),
-            })}
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={data}>
+                <XAxis dataKey="name" stroke="#888" />
+                <YAxis stroke="#888" />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#82ca9d"
+                  strokeWidth={2}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </CardContent>
       </Card>
