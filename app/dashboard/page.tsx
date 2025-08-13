@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, ArrowDownRight, Plus, Wallet, Coins, Activity } from "lucide-react";
 
 export default function DashboardPage() {
   return (
@@ -16,7 +16,7 @@ export default function DashboardPage() {
           <Card className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white shadow-lg border border-white/10">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Wallet Balance</CardTitle>
-              <Wallet className="h-5 w-5 opacity-80 text-white" />
+              <Image src="/wallet.svg" alt="Wallet" width={20} height={20} />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">$12,345.67</div>
@@ -28,7 +28,7 @@ export default function DashboardPage() {
           <Card className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white shadow-lg border border-white/10">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Your Assets</CardTitle>
-              <Coins className="h-5 w-5 opacity-80 text-white" />
+              <Image src="/coins.svg" alt="Coins" width={20} height={20} />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">8</div>
@@ -40,7 +40,7 @@ export default function DashboardPage() {
           <Card className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white shadow-lg border border-white/10">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium">Transactions</CardTitle>
-              <Activity className="h-5 w-5 opacity-80 text-white" />
+              <Image src="/transactions.svg" alt="Transactions" width={20} height={20} />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">24</div>
@@ -55,8 +55,8 @@ export default function DashboardPage() {
           <Card className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white shadow-lg border border-white/10">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Your Assets</CardTitle>
-              <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                <Plus className="h-4 w-4 mr-1" /> Add Asset
+              <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-1">
+                <Image src="/plus.svg" alt="Add" width={14} height={14} /> Add Asset
               </Button>
             </CardHeader>
             <CardContent>
@@ -70,24 +70,30 @@ export default function DashboardPage() {
                 </thead>
                 <tbody>
                   <tr className="border-b border-gray-700 hover:bg-white/5">
-                    <td className="py-3">Bitcoin</td>
+                    <td className="py-3 flex items-center gap-2">
+                      <Image src="/bitcoin.svg" alt="Bitcoin" width={18} height={18} /> Bitcoin
+                    </td>
                     <td>$5,400</td>
                     <td className="text-green-400 flex items-center">
-                      <ArrowUpRight className="h-4 w-4 mr-1" /> 4.5%
+                      <Image src="/arrow-up-right.svg" alt="Up" width={14} height={14} /> 4.5%
                     </td>
                   </tr>
                   <tr className="border-b border-gray-700 hover:bg-white/5">
-                    <td className="py-3">Ethereum</td>
+                    <td className="py-3 flex items-center gap-2">
+                      <Image src="/ethereum.svg" alt="Ethereum" width={18} height={18} /> Ethereum
+                    </td>
                     <td>$3,200</td>
                     <td className="text-red-400 flex items-center">
-                      <ArrowDownRight className="h-4 w-4 mr-1" /> -1.8%
+                      <Image src="/arrow-down-right.svg" alt="Down" width={14} height={14} /> -1.8%
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3">SafeCoin</td>
+                    <td className="py-3 flex items-center gap-2">
+                      <Image src="/safecoin.svg" alt="SafeCoin" width={18} height={18} /> SafeCoin
+                    </td>
                     <td>$2,000</td>
                     <td className="text-green-400 flex items-center">
-                      <ArrowUpRight className="h-4 w-4 mr-1" /> 6.2%
+                      <Image src="/arrow-up-right.svg" alt="Up" width={14} height={14} /> 6.2%
                     </td>
                   </tr>
                 </tbody>
