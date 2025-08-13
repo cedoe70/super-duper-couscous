@@ -1,10 +1,20 @@
-// components/Preloader.tsx
 "use client";
 
 import { useEffect, useState } from "react";
-import { Bitcoin, Ethereum, Litecoin } from "lucide-react";
+import { Bitcoin, Litecoin } from "lucide-react";
+import Image from "next/image";
 
-const cryptoIcons = [Bitcoin, Ethereum, Litecoin];
+const EthereumIcon = () => (
+  <Image
+    src="/ethereum.svg"
+    alt="Ethereum"
+    width={48}
+    height={48}
+    className="animate-spin-slow"
+  />
+);
+
+const cryptoIcons = [Bitcoin, EthereumIcon, Litecoin];
 
 export function Preloader() {
   const [show, setShow] = useState(true);
@@ -19,12 +29,17 @@ export function Preloader() {
   return (
     <div className="fixed inset-0 bg-safeGreen bg-opacity-90 flex items-center justify-center space-x-6 z-50">
       {cryptoIcons.map((Icon, i) => (
-        <Icon
+        <div
           key={i}
-          size={48}
-          className={`text-white animate-spin-slow delay-[${i * 500}ms]`}
-          aria-label="Loading crypto symbol"
-        />
+          style={{ animationDelay: `${i * 0.5}s` }}
+          className="animate-spin-slow"
+        >
+          {typeof Icon === "function" ? (
+            <Icon />
+          ) : (
+            <Icon size={48} className="text-white" />
+          )}
+        </div>
       ))}
     </div>
   );
