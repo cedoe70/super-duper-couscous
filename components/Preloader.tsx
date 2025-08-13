@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Bitcoin } from "lucide-react";
 import Image from "next/image";
 
-// Ethereum SVG from public folder
 const EthereumIcon = () => (
   <Image
     src="/ethereum.svg"
@@ -15,18 +14,17 @@ const EthereumIcon = () => (
   />
 );
 
-// Litecoin SVG from public folder
-const LitecoinIcon = () => (
+const USDTIcon = () => (
   <Image
-    src="/litecoin.svg"
-    alt="Litecoin"
+    src="/usdt.svg"
+    alt="Tether USDT"
     width={48}
     height={48}
     className="animate-spin-slow"
   />
 );
 
-const cryptoIcons = [Bitcoin, EthereumIcon, LitecoinIcon];
+const cryptoIcons: (() => JSX.Element)[] = [Bitcoin as any, EthereumIcon, USDTIcon];
 
 export function Preloader() {
   const [show, setShow] = useState(true);
@@ -46,10 +44,11 @@ export function Preloader() {
           style={{ animationDelay: `${i * 0.5}s` }}
           className="animate-spin-slow"
         >
-          {typeof Icon === "function" ? (
-            <Icon />
+          {/* Lucide icons need props, Image icons don't */}
+          {Icon === Bitcoin ? (
+            <Bitcoin size={48} className="text-white" />
           ) : (
-            <Icon size={48} className="text-white" />
+            <Icon />
           )}
         </div>
       ))}
