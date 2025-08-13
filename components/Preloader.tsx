@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Bitcoin, Litecoin } from "lucide-react";
+import { Bitcoin } from "lucide-react";
 import Image from "next/image";
 
+// Ethereum SVG from public folder
 const EthereumIcon = () => (
   <Image
     src="/ethereum.svg"
@@ -14,7 +15,18 @@ const EthereumIcon = () => (
   />
 );
 
-const cryptoIcons = [Bitcoin, EthereumIcon, Litecoin];
+// Litecoin SVG from public folder
+const LitecoinIcon = () => (
+  <Image
+    src="/litecoin.svg"
+    alt="Litecoin"
+    width={48}
+    height={48}
+    className="animate-spin-slow"
+  />
+);
+
+const cryptoIcons = [Bitcoin, EthereumIcon, LitecoinIcon];
 
 export function Preloader() {
   const [show, setShow] = useState(true);
