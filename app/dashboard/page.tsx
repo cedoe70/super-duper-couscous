@@ -4,8 +4,13 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
-// 👇 Casting ResponsiveContainer to `any` to bypass Next.js + TS 5 strict JSX typing issue
+// 👇 TypeScript JSX strictness bypass
 const RC = ResponsiveContainer as any;
+const LC = LineChart as any;
+const LX = XAxis as any;
+const LY = YAxis as any;
+const TT = Tooltip as any;
+const LN = Line as any;
 
 export default function DashboardPage() {
   const data = [
@@ -36,12 +41,12 @@ export default function DashboardPage() {
         <CardContent>
           <div className="h-64">
             <RC width="100%" height="100%">
-              <LineChart data={data}>
-                <XAxis dataKey="name" stroke="#888" />
-                <YAxis stroke="#888" />
-                <Tooltip />
-                <Line type="monotone" dataKey="price" stroke="#10b981" strokeWidth={2} />
-              </LineChart>
+              <LC data={data}>
+                <LX dataKey="name" stroke="#888" />
+                <LY stroke="#888" />
+                <TT />
+                <LN type="monotone" dataKey="price" stroke="#10b981" strokeWidth={2} />
+              </LC>
             </RC>
           </div>
         </CardContent>
